@@ -129,6 +129,10 @@ namespace lab3
 
         private void DisplayOperation(int index)
         {
+            if (index == 0)
+            {
+                outputText.text = "";
+            }
             if(index < operations.Count){
             outputText.text += operations[index];
             }
