@@ -9,7 +9,9 @@ namespace lab3
 {
     public class Stack<T> 
     {
+        
         private LinkedList<T> list;
+        public int Count => list.Count;
         public  Stack()
         {
             list = new LinkedList<T>();

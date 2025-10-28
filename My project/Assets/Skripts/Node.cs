@@ -10,6 +10,7 @@ namespace lab3
     {
         private T data;
         private Node<T> next;
+        
         public T Data
         {
             get { return data; }

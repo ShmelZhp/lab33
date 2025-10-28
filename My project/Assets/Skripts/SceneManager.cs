@@ -11,6 +11,7 @@ public class SceneManager : MonoBehaviour
     [SerializeField] private Parser parser;
     [SerializeField] private StackExperements stackExperements;
     [SerializeField] private ChartManager chartManager;
+    [SerializeField] private PostfixCalculator postfixCalculator;
 
     [SerializeField] private GameObject InputStackScreen;
     [SerializeField] private GameObject stackChartsScreen;
@@ -20,6 +21,7 @@ public class SceneManager : MonoBehaviour
     {
         parser.Init();
         chartManager.Init();
+        postfixCalculator.Init();
         foreach (ButtonCharacter button in buttons)
         {
             button.init();
