@@ -123,7 +123,7 @@ namespace lab3
                         outputText.text += operation;
                     }
 
-                    // Прокручиваем вниз
+                  
                     
                 }
 
