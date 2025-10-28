@@ -69,6 +69,38 @@ public class StackExperements : MonoBehaviour
         for (int count = step; count <= maxValue; count += step)
         {
             lab3.Stack<string> stack = new lab3.Stack<string>();
+            List<int> commands = GenerateRandomCommandCodes(count); // 1=Push,2=Pop,3=Top,4=IsEmpty
+
+            Stopwatch sw = Stopwatch.StartNew();
+
+            foreach (int cmd in commands)
+            {
+                switch (cmd)
+                {
+                    case 1: stack.Push("x"); break;
+                    case 2: if (!stack.IsEmpty()) stack.Pop(); break;
+                    case 3: stack.Top(); break;
+                    case 4: stack.IsEmpty(); break;
+                    case 5: if(isPrint)stack.Print(); break;
+                }
+            }
+
+            sw.Stop();
+            results.Add(new Vector2Int(count, (int)(sw.Elapsed.TotalMilliseconds * 1000))); // время в мкс
+        }
+
+        return results;
+    }
+    public List<Vector2Int> MakePushPrintExperements(bool isPrint)
+    {
+        int maxValue = (int)_valueSlider.value;
+        int step = (int)_stepSlider.value;
+
+        var results = new List<Vector2Int>();
+
+        for (int count = step; count <= maxValue; count += step)
+        {
+            lab3.Stack<string> stack = new lab3.Stack<string>();
             List<int> commands = GenerateLinearDataCodes(count); // 1=Push,2=Pop,3=Top,4=IsEmpty
 
             Stopwatch sw = Stopwatch.StartNew();
@@ -180,7 +212,7 @@ public class StackExperements : MonoBehaviour
         {
             List<string> temp = new List<string>();
             for (int j = 0; j < count; j++)
-                temp.Add(GenerateRandomCommand());
+                temp.Add(GenerateLinearCommand());
 
             data.Add(temp);
         }

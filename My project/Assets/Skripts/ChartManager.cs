@@ -5,79 +5,69 @@ using XCharts.Runtime;
 
 namespace lab3
 {
-    public class ChartManager: MonoBehaviour
+    public class ChartManager : MonoBehaviour
     {
-        
-        [SerializeField] StackExperements _stackExperements;
+        [SerializeField] private StackExperements _stackExperements;
         [SerializeField] private Button _startChartButton;
-        [SerializeField] private XCharts.Runtime.LineChart chart;
-        private List<int> time;
-        private List<int> commands;
-        
+        [SerializeField] private Button _secondChartButton;
+        [SerializeField] private LineChart chart;
+
         public void Init()
         {
-            _startChartButton.onClick.AddListener(() =>CreateChart(_stackExperements.MakeStackOnlyExperement(true)));
-            
+            _startChartButton.onClick.AddListener(CreateBothCharts);
         }
 
-        private void CreateChart(List<Vector2Int> data)
+        private void CreateBothCharts()
         {
-            
-            
-
-            // Получаем компонент графика
-          
+            // очищаем старые данные
             chart.ClearData();
+            chart.ClearSerieLinks();
 
-            // === Настройки осей ===
+            // === Настройка осей ===
             var xAxis = chart.GetOrAddChartComponent<XAxis>();
             xAxis.type = Axis.AxisType.Category;
             xAxis.axisName.show = true;
-            xAxis.axisName.name = "Количество элементов";
+            xAxis.axisName.name = "операции";
 
             var yAxis = chart.GetOrAddChartComponent<YAxis>();
             yAxis.type = Axis.AxisType.Value;
             yAxis.axisName.show = true;
-            yAxis.axisName.name = "Время (мс)";
+            yAxis.axisName.name = "Время (мкс)";
 
-            // === Подсказки и легенда ===
             var tooltip = chart.GetOrAddChartComponent<Tooltip>();
             tooltip.show = true;
-
             var legend = chart.GetOrAddChartComponent<Legend>();
             legend.show = true;
 
-            // === Добавляем серию данных ===
-            var series = chart.AddSerie<Line>("Время выполнения");
-            series.symbol.show = false;           // без точек
-            series.lineType = LineType.Smooth;    // плавная линия
-            series.lineStyle.width = 2f;          // толщина
-       
-            // Примерные данные
+            // === Серия 1 — без Print() ===
+            var data1 = _stackExperements.MakeStackOnlyExperement();
+            var series1 = chart.AddSerie<Line>("Без Print()");
+            series1.symbol.show = false;
+            series1.lineStyle.width = 2f;
 
-            int[] xValues = new int[data.Count];
-            int[] yValues = new int[data.Count];
-            for (int i = 0; i < data.Count; i++)
-            {
-                xValues[i] = data[i].x;
-                
-                yValues[i] = data[i].y;
-              
-            }
+            // === Серия 2 — с Print() ===
+            var data2 = _stackExperements.MakeStackOnlyExperement(true);
+            var series2 = chart.AddSerie<Line>("С Print()");
+            series2.symbol.show = false;
+            series2.lineStyle.width = 2f;
+            // 
+            var data3 = _stackExperements.MakePushPrintExperements(true);
+            var series3 = chart.AddSerie<Line>("Push+Print()");
+            series2.symbol.show = false;
+            series2.lineStyle.width = 2f;
 
-            for (int i = 0; i < xValues.Length; i++)
+            // === Добавляем данные ===
+            for (int i = 0; i < data1.Count; i++)
             {
-                chart.AddXAxisData(xValues[i].ToString());
-                chart.AddData(0, yValues[i]);
-                
+                string xLabel = data1[i].x.ToString();
+                chart.AddXAxisData(xLabel);
+
+                chart.AddData(0, data1[i].y); // Без Print()
+                chart.AddData(1, data2[i].y); // С Print()
+                chart.AddData(2,data3[i].y);
             }
 
             chart.RefreshChart();
-            
-        }   
-
-        
-        
-        
+        }
     }
 }
