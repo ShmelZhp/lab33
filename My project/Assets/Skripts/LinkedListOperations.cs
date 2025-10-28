@@ -7,7 +7,7 @@ namespace lab3
 {
     public static class LinkedListOperations
     {
-        // 1. Функция, которая переворачивает список L
+        // 1. Р¤СѓРЅРєС†РёСЏ, РєРѕС‚РѕСЂР°СЏ РїРµСЂРµРІРѕСЂР°С‡РёРІР°РµС‚ СЃРїРёСЃРѕРє L
         public static void Reverse<T>(LinkedList<T> list)
         {
             if (list == null) throw new ArgumentNullException(nameof(list));
@@ -27,30 +27,30 @@ namespace lab3
             SetHeadNode(list, previous);
         }
 
-        // 2. Функция, которая переносит в начало непустого списка L его последний элемент
+        // 2. Р¤СѓРЅРєС†РёСЏ, РєРѕС‚РѕСЂР°СЏ РїРµСЂРµРЅРѕСЃРёС‚ РІ РЅР°С‡Р°Р»Рѕ РЅРµРїСѓСЃС‚РѕРіРѕ СЃРїРёСЃРєР° L РµРіРѕ РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚
         public static void MoveLastToFirst<T>(LinkedList<T> list)
         {
             if (list == null || list.Count == 0) return;
 
-            if (list.Count == 1) return; // Один элемент - ничего не меняется
+            if (list.Count == 1) return; // РћРґРёРЅ СЌР»РµРјРµРЅС‚ - РЅРёС‡РµРіРѕ РЅРµ РјРµРЅСЏРµС‚СЃСЏ
 
             Node<T> current = GetHeadNode(list);
             Node<T> previous = null;
 
-            // Находим последний элемент и предпоследний
+            // РќР°С…РѕРґРёРј РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚ Рё РїСЂРµРґРїРѕСЃР»РµРґРЅРёР№
             while (current.Next != null)
             {
                 previous = current;
                 current = current.Next;
             }
 
-            // Переносим последний элемент в начало
+            // РџРµСЂРµРЅРѕСЃРёРј РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚ РІ РЅР°С‡Р°Р»Рѕ
             previous.Next = null;
             current.Next = GetHeadNode(list);
             SetHeadNode(list, current);
         }
 
-        // 2. Функция, которая переносит в конец непустого списка L его первый элемент
+        // 2. Р¤СѓРЅРєС†РёСЏ, РєРѕС‚РѕСЂР°СЏ РїРµСЂРµРЅРѕСЃРёС‚ РІ РєРѕРЅРµС† РЅРµРїСѓСЃС‚РѕРіРѕ СЃРїРёСЃРєР° L РµРіРѕ РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚
         public static void MoveFirstToLast<T>(LinkedList<T> list)
         {
             if (list == null || list.Count == 0 || list.Count == 1) return;
@@ -58,19 +58,19 @@ namespace lab3
             Node<T> first = GetHeadNode(list);
             Node<T> current = first;
 
-            // Находим последний элемент
+            // РќР°С…РѕРґРёРј РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚
             while (current.Next != null)
             {
                 current = current.Next;
             }
 
-            // Переносим первый элемент в конец
+            // РџРµСЂРµРЅРѕСЃРёРј РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚ РІ РєРѕРЅРµС†
             SetHeadNode(list, first.Next);
             first.Next = null;
             current.Next = first;
         }
 
-        // 3. Функция, которая определяет количество различных элементов списка, содержащего целые числа
+        // 3. Р¤СѓРЅРєС†РёСЏ, РєРѕС‚РѕСЂР°СЏ РѕРїСЂРµРґРµР»СЏРµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ СЂР°Р·Р»РёС‡РЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР°, СЃРѕРґРµСЂР¶Р°С‰РµРіРѕ С†РµР»С‹Рµ С‡РёСЃР»Р°
         public static int CountDistinct(LinkedList<int> list)
         {
             if (list == null || list.Count == 0) return 0;
@@ -87,7 +87,7 @@ namespace lab3
             return distinctElements.Count;
         }
 
-        // 4. Функция, которая удаляет из списка L неуникальные элементы
+        // 4. Р¤СѓРЅРєС†РёСЏ, РєРѕС‚РѕСЂР°СЏ СѓРґР°Р»СЏРµС‚ РёР· СЃРїРёСЃРєР° L РЅРµСѓРЅРёРєР°Р»СЊРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹
         public static void RemoveNonUnique<T>(LinkedList<T> list) where T : IComparable
         {
             if (list == null || list.Count == 0) return;
@@ -95,7 +95,7 @@ namespace lab3
             Dictionary<T, int> frequency = new Dictionary<T, int>();
             Node<T> current = GetHeadNode(list);
 
-            // Подсчитываем частоту элементов
+            // РџРѕРґСЃС‡РёС‚С‹РІР°РµРј С‡Р°СЃС‚РѕС‚Сѓ СЌР»РµРјРµРЅС‚РѕРІ
             while (current != null)
             {
                 if (frequency.ContainsKey(current.Data))
@@ -105,7 +105,7 @@ namespace lab3
                 current = current.Next;
             }
 
-            // Удаляем элементы с частотой > 1
+            // РЈРґР°Р»СЏРµРј СЌР»РµРјРµРЅС‚С‹ СЃ С‡Р°СЃС‚РѕС‚РѕР№ > 1
             Node<T> dummy = new Node<T>(default(T));
             dummy.Next = GetHeadNode(list);
             Node<T> prev = dummy;
@@ -127,26 +127,26 @@ namespace lab3
             SetHeadNode(list, dummy.Next);
         }
 
-        // 5. Функция вставки списка самого в себя вслед за первым вхождением числа х
+        // 5. Р¤СѓРЅРєС†РёСЏ РІСЃС‚Р°РІРєРё СЃРїРёСЃРєР° СЃР°РјРѕРіРѕ РІ СЃРµР±СЏ РІСЃР»РµРґ Р·Р° РїРµСЂРІС‹Рј РІС…РѕР¶РґРµРЅРёРµРј С‡РёСЃР»Р° С…
         public static void InsertListAfterFirstOccurrence<T>(LinkedList<T> list, T x) where T : IComparable
         {
             if (list == null) return;
 
             Node<T> current = GetHeadNode(list);
 
-            // Ищем первое вхождение x
+            // РС‰РµРј РїРµСЂРІРѕРµ РІС…РѕР¶РґРµРЅРёРµ x
             while (current != null)
             {
                 if (current.Data.CompareTo(x) == 0)
                 {
-                    // Создаем копию оставшейся части списка
+                    // РЎРѕР·РґР°РµРј РєРѕРїРёСЋ РѕСЃС‚Р°РІС€РµР№СЃСЏ С‡Р°СЃС‚Рё СЃРїРёСЃРєР°
                     Node<T> copy = CopyList(current.Next);
 
-                    // Вставляем копию после текущего элемента
+                    // Р’СЃС‚Р°РІР»СЏРµРј РєРѕРїРёСЋ РїРѕСЃР»Рµ С‚РµРєСѓС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°
                     Node<T> temp = current.Next;
                     current.Next = copy;
 
-                    // Соединяем конец копии с оригинальным продолжением
+                    // РЎРѕРµРґРёРЅСЏРµРј РєРѕРЅРµС† РєРѕРїРёРё СЃ РѕСЂРёРіРёРЅР°Р»СЊРЅС‹Рј РїСЂРѕРґРѕР»Р¶РµРЅРёРµРј
                     Node<T> copyEnd = copy;
                     while (copyEnd.Next != null)
                     {
@@ -160,14 +160,14 @@ namespace lab3
             }
         }
 
-        // 6. Функция, которая вставляет в непустой упорядоченный список новый элемент Е
+        // 6. Р¤СѓРЅРєС†РёСЏ, РєРѕС‚РѕСЂР°СЏ РІСЃС‚Р°РІР»СЏРµС‚ РІ РЅРµРїСѓСЃС‚РѕР№ СѓРїРѕСЂСЏРґРѕС‡РµРЅРЅС‹Р№ СЃРїРёСЃРѕРє РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ Р•
         public static void InsertInOrderedList<T>(LinkedList<T> list, T element) where T : IComparable
         {
             if (list == null) throw new ArgumentNullException(nameof(list));
 
             Node<T> newNode = new Node<T>(element);
 
-            // Если список пустой или новый элемент должен быть первым
+            // Р•СЃР»Рё СЃРїРёСЃРѕРє РїСѓСЃС‚РѕР№ РёР»Рё РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РїРµСЂРІС‹Рј
             if (list.Count == 0 || GetHeadNode(list).Data.CompareTo(element) >= 0)
             {
                 newNode.Next = GetHeadNode(list);
@@ -177,18 +177,18 @@ namespace lab3
 
             Node<T> current = GetHeadNode(list);
 
-            // Ищем позицию для вставки
+            // РС‰РµРј РїРѕР·РёС†РёСЋ РґР»СЏ РІСЃС‚Р°РІРєРё
             while (current.Next != null && current.Next.Data.CompareTo(element) < 0)
             {
                 current = current.Next;
             }
 
-            // Вставляем новый элемент
+            // Р’СЃС‚Р°РІР»СЏРµРј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
             newNode.Next = current.Next;
             current.Next = newNode;
         }
 
-        // 7. Функция, которая удаляет из списка L все элементы Е
+        // 7. Р¤СѓРЅРєС†РёСЏ, РєРѕС‚РѕСЂР°СЏ СѓРґР°Р»СЏРµС‚ РёР· СЃРїРёСЃРєР° L РІСЃРµ СЌР»РµРјРµРЅС‚С‹ Р•
         public static void RemoveAllOccurrences<T>(LinkedList<T> list, T element) where T : IComparable
         {
             if (list == null || list.Count == 0) return;
@@ -214,12 +214,12 @@ namespace lab3
             SetHeadNode(list, dummy.Next);
         }
 
-        // 8. Функция, которая вставляет в список L новый элемент F перед первым вхождением элемента Е
+        // 8. Р¤СѓРЅРєС†РёСЏ, РєРѕС‚РѕСЂР°СЏ РІСЃС‚Р°РІР»СЏРµС‚ РІ СЃРїРёСЃРѕРє L РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ F РїРµСЂРµРґ РїРµСЂРІС‹Рј РІС…РѕР¶РґРµРЅРёРµРј СЌР»РµРјРµРЅС‚Р° Р•
         public static void InsertBeforeFirstOccurrence<T>(LinkedList<T> list, T newElement, T targetElement) where T : IComparable
         {
             if (list == null) return;
 
-            // Если список пустой или targetElement в начале
+            // Р•СЃР»Рё СЃРїРёСЃРѕРє РїСѓСЃС‚РѕР№ РёР»Рё targetElement РІ РЅР°С‡Р°Р»Рµ
             if (list.Count == 0 || GetHeadNode(list).Data.CompareTo(targetElement) == 0)
             {
                 list.AddFirst(newElement);
@@ -241,7 +241,7 @@ namespace lab3
             }
         }
 
-        // 9. Функция дописывает к списку L список E (оба содержат целые числа)
+        // 9. Р¤СѓРЅРєС†РёСЏ РґРѕРїРёСЃС‹РІР°РµС‚ Рє СЃРїРёСЃРєСѓ L СЃРїРёСЃРѕРє E (РѕР±Р° СЃРѕРґРµСЂР¶Р°С‚ С†РµР»С‹Рµ С‡РёСЃР»Р°)
         public static void AppendList(LinkedList<int> list, LinkedList<int> otherList)
         {
             if (list == null || otherList == null) return;
@@ -254,17 +254,17 @@ namespace lab3
 
             Node<int> current = GetHeadNode(list);
 
-            // Находим последний элемент первого списка
+            // РќР°С…РѕРґРёРј РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚ РїРµСЂРІРѕРіРѕ СЃРїРёСЃРєР°
             while (current.Next != null)
             {
                 current = current.Next;
             }
 
-            // Копируем второй список и присоединяем к первому
+            // РљРѕРїРёСЂСѓРµРј РІС‚РѕСЂРѕР№ СЃРїРёСЃРѕРє Рё РїСЂРёСЃРѕРµРґРёРЅСЏРµРј Рє РїРµСЂРІРѕРјСѓ
             current.Next = CopyList(GetHeadNode(otherList));
         }
 
-        // 10. Функция разбивает список целых чисел на два списка по первому вхождению заданного числа
+        // 10. Р¤СѓРЅРєС†РёСЏ СЂР°Р·Р±РёРІР°РµС‚ СЃРїРёСЃРѕРє С†РµР»С‹С… С‡РёСЃРµР» РЅР° РґРІР° СЃРїРёСЃРєР° РїРѕ РїРµСЂРІРѕРјСѓ РІС…РѕР¶РґРµРЅРёСЋ Р·Р°РґР°РЅРЅРѕРіРѕ С‡РёСЃР»Р°
         public static (LinkedList<int>, LinkedList<int>) SplitByFirstOccurrence(LinkedList<int> list, int number)
         {
             if (list == null) return (new LinkedList<int>(), new LinkedList<int>());
@@ -299,38 +299,38 @@ namespace lab3
             return (firstPart, secondPart);
         }
 
-        // 11. Функция удваивает список (приписывает в конец списка себя самого)
+        // 11. Р¤СѓРЅРєС†РёСЏ СѓРґРІР°РёРІР°РµС‚ СЃРїРёСЃРѕРє (РїСЂРёРїРёСЃС‹РІР°РµС‚ РІ РєРѕРЅРµС† СЃРїРёСЃРєР° СЃРµР±СЏ СЃР°РјРѕРіРѕ)
         public static void DoubleList<T>(LinkedList<T> list)
         {
             if (list == null || list.Count == 0) return;
 
-            // Копируем весь список
+            // РљРѕРїРёСЂСѓРµРј РІРµСЃСЊ СЃРїРёСЃРѕРє
             Node<T> copy = CopyList(GetHeadNode(list));
 
-            // Находим конец оригинального списка
+            // РќР°С…РѕРґРёРј РєРѕРЅРµС† РѕСЂРёРіРёРЅР°Р»СЊРЅРѕРіРѕ СЃРїРёСЃРєР°
             Node<T> current = GetHeadNode(list);
             while (current.Next != null)
             {
                 current = current.Next;
             }
 
-            // Присоединяем копию к концу
+            // РџСЂРёСЃРѕРµРґРёРЅСЏРµРј РєРѕРїРёСЋ Рє РєРѕРЅС†Сѓ
             current.Next = copy;
         }
 
-        // 12. Функция меняет местами два элемента списка, заданные пользователем
+        // 12. Р¤СѓРЅРєС†РёСЏ РјРµРЅСЏРµС‚ РјРµСЃС‚Р°РјРё РґРІР° СЌР»РµРјРµРЅС‚Р° СЃРїРёСЃРєР°, Р·Р°РґР°РЅРЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј
         public static void SwapElements<T>(LinkedList<T> list, T first, T second) where T : IComparable
         {
             if (list == null || list.Count < 2) return;
 
-            // Если элементы одинаковые, ничего не делаем
+            // Р•СЃР»Рё СЌР»РµРјРµРЅС‚С‹ РѕРґРёРЅР°РєРѕРІС‹Рµ, РЅРёС‡РµРіРѕ РЅРµ РґРµР»Р°РµРј
             if (first.CompareTo(second) == 0) return;
 
             Node<T> firstNode = null;
             Node<T> secondNode = null;
             Node<T> current = GetHeadNode(list);
 
-            // Ищем узлы с заданными значениями
+            // РС‰РµРј СѓР·Р»С‹ СЃ Р·Р°РґР°РЅРЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё
             while (current != null)
             {
                 if (current.Data.CompareTo(first) == 0)
@@ -344,7 +344,7 @@ namespace lab3
                 current = current.Next;
             }
 
-            // Если оба элемента найдены, меняем их данные
+            // Р•СЃР»Рё РѕР±Р° СЌР»РµРјРµРЅС‚Р° РЅР°Р№РґРµРЅС‹, РјРµРЅСЏРµРј РёС… РґР°РЅРЅС‹Рµ
             if (firstNode != null && secondNode != null)
             {
                 T temp = firstNode.Data;
@@ -353,7 +353,7 @@ namespace lab3
             }
         }
 
-        // Вспомогательные методы для доступа к приватным полям через Reflection
+        // Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ РјРµС‚РѕРґС‹ РґР»СЏ РґРѕСЃС‚СѓРїР° Рє РїСЂРёРІР°С‚РЅС‹Рј РїРѕР»СЏРј С‡РµСЂРµР· Reflection
         private static Node<T> GetHeadNode<T>(LinkedList<T> list)
         {
             var field = typeof(LinkedList<T>).GetField("head", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
@@ -365,7 +365,7 @@ namespace lab3
             var field = typeof(LinkedList<T>).GetField("head", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             field.SetValue(list, newHead);
 
-            // Обновляем счетчик
+            // РћР±РЅРѕРІР»СЏРµРј СЃС‡РµС‚С‡РёРє
             var countField = typeof(LinkedList<T>).GetField("count", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             int count = 0;
             Node<T> current = newHead;
@@ -377,7 +377,7 @@ namespace lab3
             countField.SetValue(list, count);
         }
 
-        // Вспомогательный метод для копирования списка
+        // Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ РєРѕРїРёСЂРѕРІР°РЅРёСЏ СЃРїРёСЃРєР°
         private static Node<T> CopyList<T>(Node<T> head)
         {
             if (head == null) return null;
@@ -396,7 +396,7 @@ namespace lab3
             return newHead;
         }
 
-        // Метод для чтения списка из файла
+        // РњРµС‚РѕРґ РґР»СЏ С‡С‚РµРЅРёСЏ СЃРїРёСЃРєР° РёР· С„Р°Р№Р»Р°
         public static LinkedList<int> ReadListFromFile(string filePath)
         {
             LinkedList<int> list = new LinkedList<int>();
@@ -414,7 +414,7 @@ namespace lab3
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Ошибка при чтении файла: {ex.Message}");
+                Console.WriteLine($"РћС€РёР±РєР° РїСЂРё С‡С‚РµРЅРёРё С„Р°Р№Р»Р°: {ex.Message}");
             }
 
             return list;

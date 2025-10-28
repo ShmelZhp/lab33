@@ -16,7 +16,7 @@ namespace lab3
         {
             get { return head.Data; }
         }
-        public LinkedList()
+        public LinkedList() 
         {
             head = null;
             count = 0;
