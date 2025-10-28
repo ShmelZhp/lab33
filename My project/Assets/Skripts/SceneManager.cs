@@ -21,7 +21,7 @@ public class SceneManager : MonoBehaviour
     {
         parser.Init();
         chartManager.Init();
-        postfixCalculator.Init();
+            postfixCalculator.Init();
         foreach (ButtonCharacter button in buttons)
         {
             button.init();
