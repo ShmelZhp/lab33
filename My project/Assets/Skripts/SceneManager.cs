@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using lab3;
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,8 @@ public class SceneManager : MonoBehaviour
     [SerializeField] private StackExperements stackExperements;
     [SerializeField] private ChartManager chartManager;
     [SerializeField] private PostfixCalculator postfixCalculator;
-
+    [SerializeField] private queParser queParser;
+    
     [SerializeField] private GameObject InputStackScreen;
     [SerializeField] private GameObject stackChartsScreen;
     [SerializeField] private List<ButtonCharacter>  buttons;
@@ -22,6 +24,7 @@ public class SceneManager : MonoBehaviour
         parser.Init();
         chartManager.Init();
             postfixCalculator.Init();
+            queParser.Init();
         foreach (ButtonCharacter button in buttons)
         {
             button.init();

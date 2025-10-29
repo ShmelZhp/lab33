@@ -10,54 +10,54 @@ public class StandardQueue<T>
         queue = new Queue<T>();
     }
 
-    // Вставка элемента
+    // Г‚Г±ГІГ ГўГЄГ  ГЅГ«ГҐГ¬ГҐГ­ГІГ 
     public void Enqueue(T item)
     {
         queue.Enqueue(item);
     }
 
-    // Удаление элемента
+    // Г“Г¤Г Г«ГҐГ­ГЁГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ 
     public T Dequeue()
     {
         if (queue.Count == 0)
-            throw new InvalidOperationException("Очередь пуста");
+            throw new InvalidOperationException("ГЋГ·ГҐГ°ГҐГ¤Гј ГЇГіГ±ГІГ ");
 
         return queue.Dequeue();
     }
 
-    // Проверка на пустоту
+    // ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГЇГіГ±ГІГ®ГІГі
     public bool IsEmpty()
     {
         return queue.Count == 0;
     }
 
-    // Просмотр первого элемента
+    // ГЏГ°Г®Г±Г¬Г®ГІГ° ГЇГҐГ°ГўГ®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ 
     public T Peek()
     {
         if (queue.Count == 0)
-            throw new InvalidOperationException("Очередь пуста");
+            throw new InvalidOperationException("ГЋГ·ГҐГ°ГҐГ¤Гј ГЇГіГ±ГІГ ");
 
         return queue.Peek();
     }
 
-    // Печать очереди
+    // ГЏГҐГ·Г ГІГј Г®Г·ГҐГ°ГҐГ¤ГЁ
     public void Print()
     {
         if (queue.Count == 0)
         {
-            Console.WriteLine("Очередь пуста");
+            Console.WriteLine("ГЋГ·ГҐГ°ГҐГ¤Гј ГЇГіГ±ГІГ ");
             return;
         }
 
-        Console.Write("Очередь: ");
+        Console.Write("ГЋГ·ГҐГ°ГҐГ¤Гј: ");
         foreach (T item in queue)
         {
             Console.Write(item + " ");
         }
-        Console.WriteLine();
+        
     }
 
-    // Количество элементов
+    // ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў
     public int Count()
     {
         return queue.Count;
