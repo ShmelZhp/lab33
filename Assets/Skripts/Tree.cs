@@ -420,6 +420,7 @@ public class GeneralTree<T> where T : IComparable<T>
         return result.ToString();
     }
 
+    // Обход в глубину (аналогично вашему DepthSearch)
     public string DepthSearch()
     {
         StringBuilder result = new StringBuilder();
